@@ -9,11 +9,16 @@ spec:
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
   jobTemplate:
+    metadata:
+      labels:
+        app: time-printer
+        app.kubernetes.io/instance: time-printer
     spec:
       template:
         metadata:
           labels:
             app: time-printer
+            app.kubernetes.io/instance: time-printer
         spec:
           restartPolicy: OnFailure
           containers:
