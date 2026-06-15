@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: time-printer
+  labels:
+    app: time-printer
+spec:
+  schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: time-printer
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: time-printer
+              image: python:3.11-slim
+              imagePullPolicy: IfNotPresent
+              command:
+                - python
+                - /scripts/print_time.py
+              volumeMounts:
+                - name: script
+                  mountPath: /scripts
+          volumes:
+            - name: script
+              configMap:
+                name: time-printer-script
