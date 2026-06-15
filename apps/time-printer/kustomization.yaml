@@ -5,9 +5,23 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-  - cronjob.yaml
+  - ../_base
+
+namePrefix: time-printer-
+
+commonLabels:
+  app: time-printer
+  app.kubernetes.io/instance: time-printer
+
+patches:
+  - target:
+      kind: CronJob
+    patch: |-
+      - op: replace
+        path: /spec/schedule
+        value: "*/5 * * * *"
 
 configMapGenerator:
-  - name: time-printer-script
+  - name: script
     files:
-      - print_time.py
+      - script.py=print_time.py
