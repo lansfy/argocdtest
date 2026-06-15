@@ -5,13 +5,16 @@ generatorOptions:
   disableNameSuffixHash: true
 
 resources:
-  - ../_base
+  - cronjob.yaml
 
 namePrefix: time-printer-
 
-commonLabels:
-  app: time-printer
-  app.kubernetes.io/instance: time-printer
+labels:
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: time-printer
+      app.kubernetes.io/instance: time-printer
 
 patches:
   - target:
