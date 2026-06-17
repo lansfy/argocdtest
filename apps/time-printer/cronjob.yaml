@@ -1,10 +1,10 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: app
+  name: time-printer-app
   labels:
-    app: app
-    app.kubernetes.io/instance: app
+    app: time-printer
+    app.kubernetes.io/instance: time-printer
 spec:
   schedule: "* * * * *"
   successfulJobsHistoryLimit: 1
@@ -12,14 +12,14 @@ spec:
   jobTemplate:
     metadata:
       labels:
-        app: app
-        app.kubernetes.io/instance: app
+        app: time-printer
+        app.kubernetes.io/instance: time-printer
     spec:
       template:
         metadata:
           labels:
-            app: app
-            app.kubernetes.io/instance: app
+            app: time-printer
+            app.kubernetes.io/instance: time-printer
         spec:
           restartPolicy: OnFailure
           containers:
@@ -35,4 +35,4 @@ spec:
           volumes:
             - name: script
               configMap:
-                name: script
+                name: time-printer-script
