@@ -10,4 +10,4 @@ resources:
 configMapGenerator:
   - name: script
     files:
-      - script.py=print_time.py
+      - print_time.py

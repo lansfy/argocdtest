@@ -28,7 +28,7 @@ spec:
               imagePullPolicy: IfNotPresent
               command:
                 - python
-                - /scripts/script.py
+                - /scripts/print_time.py
               volumeMounts:
                 - name: script
                   mountPath: /scripts
