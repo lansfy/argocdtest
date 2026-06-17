@@ -35,4 +35,4 @@ spec:
           volumes:
             - name: script
               configMap:
-                name: script
+                name: time-printer-script

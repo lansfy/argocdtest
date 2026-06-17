@@ -8,6 +8,6 @@ resources:
   - cronjob.yaml
 
 configMapGenerator:
-  - name: script
+  - name: time-printer-script
     files:
       - print_time.py
